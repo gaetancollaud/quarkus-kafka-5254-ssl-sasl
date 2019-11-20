@@ -2,6 +2,15 @@ version: '2'
 
 services:
 
+  quarkus:
+    image: gaetancollaud/quarkus-kafka
+    build:
+      context: .
+      # dockerfile: src/main/docker/Dockerfile.jvm
+      dockerfile: src/main/docker/Dockerfile.native
+    volumes:
+      - ./quarkus-config.properties:/work/config/application.properties
+
   zookeeper:
     image: strimzi/kafka:latest-kafka-2.3.0
     command: [
